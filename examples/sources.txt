@@ -1,0 +1,3 @@
+# Local paths resolve relative to this source list.
+./guide.md
+# Add your own HTTP(S) resources or git+https:// repositories below.

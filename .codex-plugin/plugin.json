@@ -1,0 +1,40 @@
+{
+  "name": "opensync",
+  "version": "0.1.0",
+  "description": "Sync anything to a local, searchable knowledge base.",
+  "author": {
+    "name": "Mehrdad Zaker"
+  },
+  "homepage": "https://github.com/mehrdadxzaker/opensync",
+  "repository": "https://github.com/mehrdadxzaker/opensync",
+  "license": "MIT",
+  "skills": "./skills/",
+  "requires_local_executor": true,
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/kb-setup/SKILL.md"
+    }
+  },
+  "interface": {
+    "displayName": "OpenSync",
+    "shortDescription": "Your knowledge, synced locally",
+    "longDescription": "Keep URLs, files, folders, and Git repositories synchronized in a shared local knowledge base. Search offline with citations and freshness. No API keys or model downloads. Requires Python 3.10+ on your computer.",
+    "developerName": "Mehrdad Zaker",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/mehrdadxzaker/opensync",
+    "privacyPolicyURL": "https://github.com/mehrdadxzaker/opensync/blob/main/docs/privacy.md",
+    "termsOfServiceURL": "https://github.com/mehrdadxzaker/opensync/blob/main/docs/terms.md",
+    "defaultPrompt": [
+      "Sync a source to my local knowledge base.",
+      "Search my synced knowledge base."
+    ],
+    "brandColor": "#102C2B",
+    "composerIcon": "./assets/opensync.svg",
+    "logo": "./assets/opensync.svg",
+    "supportURL": "https://github.com/mehrdadxzaker/opensync/issues"
+  }
+}

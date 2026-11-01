@@ -1,0 +1,13 @@
+{
+  "name": "opensync",
+  "owner": {
+    "name": "mehrdadxzaker"
+  },
+  "plugins": [
+    {
+      "name": "opensync",
+      "source": "./",
+      "description": "Sync anything to a local, searchable knowledge base."
+    }
+  ]
+}

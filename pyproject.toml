@@ -1,0 +1,22 @@
+[build-system]
+requires = []
+build-backend = "_build_backend"
+backend-path = ["."]
+
+[project]
+name = "opensync-kb"
+version = "0.1.0"
+description = "Sync anything to a local, searchable knowledge base."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Mehrdad Zaker"}]
+keywords = ["agents", "knowledge-base", "sync", "local-first", "codex"]
+classifiers = ["Programming Language :: Python :: 3", "Topic :: Text Processing :: Indexing", "Operating System :: OS Independent"]
+
+[project.scripts]
+kb = "opensync.cli:main"
+opensync = "opensync.cli:main"
+
+[project.optional-dependencies]
+pdf = ["pypdf>=5,<7"]

@@ -1,0 +1,13 @@
+{
+  "name": "opensync",
+  "version": "0.1.0",
+  "description": "Sync anything to a local, searchable knowledge base.",
+  "author": {
+    "name": "Mehrdad Zaker"
+  },
+  "homepage": "https://github.com/mehrdadxzaker/opensync",
+  "repository": "https://github.com/mehrdadxzaker/opensync",
+  "license": "MIT",
+  "skills": "./skills/",
+  "commands": "./commands/"
+}
