@@ -18,7 +18,7 @@ class CoreTests(unittest.TestCase):
         self.folder = self.root / 'notes'
         self.folder.mkdir()
         self.file = self.folder / 'guide.md'
-        self.file.write_text('# Robotics\nPlanning uses state transitions.\nPersian فارسی دانش\n')
+        self.file.write_text('# Robotics\nPlanning uses state transitions.\nPersian فارسی دانش\n', encoding='utf-8')
         self.kb = KnowledgeBase(self.root / 'kb')
         self.addCleanup(self.kb.db.close)
         self.ident = self.kb.register(str(self.folder), 'local', 3600)

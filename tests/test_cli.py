@@ -109,3 +109,18 @@ class CLITests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class UnicodePipeTests(unittest.TestCase):
+    def test_json_output_is_utf8_even_with_ascii_pipe_default(self):
+        import os
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            note = root / 'persian.txt'
+            note.write_text('فارسی دانش', encoding='utf-8')
+            env = dict(os.environ, PYTHONIOENCODING='ascii')
+            script = Path(__file__).resolve().parent.parent / 'scripts/kb.py'
+            prefix = [sys.executable, str(script), '--home', str(root / 'kb')]
+            subprocess.run(prefix + ['sync', str(note), '--no-schedule'], check=True, capture_output=True, env=env, timeout=10)
+            result = subprocess.run(prefix + ['search', 'فارسی'], capture_output=True, env=env, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn('فارسی', json.loads(result.stdout.decode('utf-8'))[0]['passage'])

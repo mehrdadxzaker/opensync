@@ -169,6 +169,10 @@ def run(args):
 
 
 def main(argv=None):
+    # JSON pipes use UTF-8 consistently, including on Windows legacy locales.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     try:
         return run(parser().parse_args(argv))
     except KeyboardInterrupt:

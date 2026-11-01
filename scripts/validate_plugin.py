@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def validate(root=ROOT):
-    portable = json.loads((root / 'plugin.json').read_text())
-    codex = json.loads((root / '.codex-plugin/plugin.json').read_text())
-    claude = json.loads((root / '.claude-plugin/plugin.json').read_text())
+    portable = json.loads((root / 'plugin.json').read_text(encoding='utf-8'))
+    codex = json.loads((root / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
+    claude = json.loads((root / '.claude-plugin/plugin.json').read_text(encoding='utf-8'))
     assert portable['name'] == codex['name'] == claude['name'] == 'opensync'
     assert portable['version'] == codex['version'] == claude['version']
     assert portable['extensions']['com.openai']['requires_local_executor'] is True
@@ -25,11 +25,11 @@ def validate(root=ROOT):
     skills = list((root / 'skills').glob('*/SKILL.md'))
     assert len(skills) == 4
     for path in skills:
-        text = path.read_text()
+        text = path.read_text(encoding='utf-8')
         assert text.startswith('---\nname: ')
         assert '\ndescription: ' in text
         assert (path.parent / '../../scripts/kb.py').resolve().is_file()
-    marketplace = json.loads((root / '.agents/plugins/marketplace.json').read_text())
+    marketplace = json.loads((root / '.agents/plugins/marketplace.json').read_text(encoding='utf-8'))
     assert marketplace['plugins'][0]['source']['path'] == './'
     result = subprocess.run([sys.executable, str(root / 'scripts/kb.py'), '--version'], cwd=root.parent, capture_output=True, text=True, timeout=10)
     assert result.returncode == 0, result.stderr

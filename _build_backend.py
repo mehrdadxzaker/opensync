@@ -10,12 +10,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent
 NAME = 'opensync_kb'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 DIST = f'{NAME}-{VERSION}.dist-info'
 
 
 def metadata():
-    return ('Metadata-Version: 2.3\nName: opensync-kb\nVersion: ' + VERSION + '\nSummary: Sync anything to a local, searchable knowledge base.\nAuthor: Mehrdad Zaker\nLicense: MIT\nRequires-Python: >=3.10\nProvides-Extra: pdf\nRequires-Dist: pypdf>=5,<7; extra == "pdf"\nDescription-Content-Type: text/markdown\n\n' + (ROOT / 'README.md').read_text()).encode()
+    return ('Metadata-Version: 2.3\nName: opensync-kb\nVersion: ' + VERSION + '\nSummary: Sync anything to a local, searchable knowledge base.\nAuthor: Mehrdad Zaker\nLicense: MIT\nRequires-Python: >=3.10\nProvides-Extra: pdf\nRequires-Dist: pypdf>=5,<7; extra == "pdf"\nDescription-Content-Type: text/markdown\n\n' + (ROOT / 'README.md').read_text(encoding='utf-8')).encode()
 
 
 def get_requires_for_build_wheel(config_settings=None):

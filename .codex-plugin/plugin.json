@@ -1,6 +1,6 @@
 {
   "name": "opensync",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sync anything to a local, searchable knowledge base.",
   "author": {
     "name": "Mehrdad Zaker"

@@ -41,7 +41,7 @@ class GitTests(unittest.TestCase):
                     self.assertTrue(kb.refresh(ident)['ok'])
                 hit = kb.search('robotic')[0]
                 self.assertEqual(hit['location'], uri + '#guide.md')
-                self.assertEqual(file.read_text(), '# Planning\nOriginal robotic planning\n')
+                self.assertEqual(file.read_text(encoding='utf-8'), '# Planning\nOriginal robotic planning\n')
                 file.write_text('# Learning\nNew policy learning\n')
                 git('add', '.')
                 git('commit', '-m', 'Update fixture')

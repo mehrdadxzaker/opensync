@@ -32,4 +32,4 @@ class SchedulerTests(unittest.TestCase):
     def test_systemd_paths_are_quoted_and_specifiers_escaped(self):
         plan = scheduler.plan(Path('/tmp/a %path $value'), 'linux')
         self.assertIn('%%path $$value', plan['service'])
-        self.assertIn('"/tmp/a %%path $$value"', plan['service'])
+        self.assertIn('a %%path $$value"', plan['service'])

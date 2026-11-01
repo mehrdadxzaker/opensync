@@ -167,7 +167,7 @@ def local_documents(root: Path):
         raise FileNotFoundError(f"Source is missing; keeping its last good snapshot: {root}")
     patterns = []
     if root.is_dir() and (root / ".opensyncignore").is_file():
-        patterns = [s.strip() for s in (root / ".opensyncignore").read_text().splitlines() if s.strip() and not s.lstrip().startswith("#")]
+        patterns = [s.strip() for s in (root / ".opensyncignore").read_text(encoding='utf-8-sig').splitlines() if s.strip() and not s.lstrip().startswith("#")]
 
     def ignored(path):
         rel = path.relative_to(root).as_posix()

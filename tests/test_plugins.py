@@ -15,7 +15,7 @@ from validate_plugin import validate
 class PluginTests(unittest.TestCase):
     def test_manifest_and_listing_limits(self):
         validate()
-        d = json.loads((ROOT / 'plugin.json').read_text())
+        d = json.loads((ROOT / 'plugin.json').read_text(encoding='utf-8'))
         interface = d['extensions']['com.openai']['interface']
         self.assertLessEqual(len(interface['shortDescription']), 30)
         self.assertLessEqual(len(interface['displayName']), 30)
@@ -50,14 +50,20 @@ class PluginTests(unittest.TestCase):
             root = Path(folder)
             archive = backend.build_sdist(folder)
             with tarfile.open(root / archive) as source:
-                source.extractall(root, filter="data")
-            extracted = root / "opensync_kb-0.1.0"
+                for member in source.getmembers():
+                    target = (root / member.name).resolve()
+                    self.assertTrue(target.is_relative_to(root.resolve()))
+                    self.assertTrue(member.isfile())
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    with source.extractfile(member) as stream:
+                        target.write_bytes(stream.read())
+            extracted = root / "opensync_kb-0.1.1"
             code = 'import _build_backend; print(_build_backend.build_wheel("."))'
             result = subprocess.run([sys.executable, "-c", code], cwd=extracted, capture_output=True, text=True, timeout=10)
             self.assertEqual(result.returncode, 0, result.stderr)
             with zipfile.ZipFile(extracted / result.stdout.strip()) as wheel:
                 self.assertIn("opensync/cli.py", wheel.namelist())
-                self.assertIn("opensync_kb-0.1.0.dist-info/RECORD", wheel.namelist())
+                self.assertIn("opensync_kb-0.1.1.dist-info/RECORD", wheel.namelist())
 
     def test_archives_are_reproducible(self):
         with tempfile.TemporaryDirectory() as folder:

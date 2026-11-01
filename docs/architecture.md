@@ -14,4 +14,4 @@ Search sanitizes query words, joins them with AND or OR, and ranks matching chun
 
 The root plugin package includes the same runtime and four skills. Codex and Claude compatibility manifests use the same source files. There is no MCP process, cloud service, model call, API key, automatic shell hook, or database copy per agent. The skill invokes scripts/kb.py using a package-relative path resolved to an absolute location.
 
-The v0.1.0 schema is created on first use. Future schema changes must include an explicit migration before raising the stored schema version; this release does not migrate the earlier standalone kb.py prototype's database.
+The v0.1.1 schema is created on first use. Future schema changes must include an explicit migration before raising the stored schema version; this release does not migrate the earlier standalone kb.py prototype's database.
